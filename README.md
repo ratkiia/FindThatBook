@@ -293,10 +293,9 @@ network-independent.
 - **OTLP exporter** wired to a collector (Jaeger/Tempo) for distributed tracing in non-dev envs.
   (The OTLP exporter package was removed to clear a dependency CVE; one moderate transitive
   advisory in `OpenTelemetry.Api` currently has no upstream fix and is left un-suppressed.)
-
+--**log user queries**:Log user queries for future model training, platform enhancements, analytics, auditing, troubleshooting, and end-to-end request tracing.. 
 ---
 
-## Requirement cross-check
 
 - OpenTelemetry tracing is wired with a **console exporter** in Development; the OTLP exporter
   package was removed to clear a dependency CVE and is listed as a future add-back.
