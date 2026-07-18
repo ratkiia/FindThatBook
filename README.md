@@ -298,11 +298,6 @@ network-independent.
 
 ## Requirement cross-check
 
-The provided `application.md` design matches the official brief (`2025_Developer_Project.docx`).
-Everything in the brief is implemented. Minor notes:
-
-- The brief lists Redis and Docker as *suggested/optional*; this submission uses an in-memory
-  cache and no container (documented above as future work) to stay within the time box.
 - OpenTelemetry tracing is wired with a **console exporter** in Development; the OTLP exporter
   package was removed to clear a dependency CVE and is listed as a future add-back.
 >>>>>>> 71db5b4 (Initial commit)
