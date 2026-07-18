@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <!--
+      The test project targets net10.0 (the only runtime installed on this machine) so
+      the in-process ASP.NET Core TestServer uses the net10 response pipe writer, which
+      System.Text.Json on net10 requires. The shipped projects stay on net8.0 per the
+      brief; a net10 test host can reference net8 assemblies without issue.
+    -->
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="FluentAssertions" Version="6.12.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FindThatBook.Domain\FindThatBook.Domain.csproj" />
+    <ProjectReference Include="..\..\src\FindThatBook.Application\FindThatBook.Application.csproj" />
+    <ProjectReference Include="..\..\src\FindThatBook.Infrastructure\FindThatBook.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\FindThatBook.Api\FindThatBook.Api.csproj" />
+  </ItemGroup>
+
+</Project>

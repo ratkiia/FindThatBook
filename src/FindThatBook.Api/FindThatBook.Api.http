@@ -1,0 +1,37 @@
+@host = http://localhost:5099
+
+### Health check
+GET {{host}}/health
+Accept: application/json
+
+### Search — dense/noisy query
+POST {{host}}/api/books/search
+Content-Type: application/json
+
+{
+  "query": "tolkien hobbit illustrated deluxe 1937"
+}
+
+### Search — ambiguous character hint
+POST {{host}}/api/books/search
+Content-Type: application/json
+
+{
+  "query": "mark huckleberry"
+}
+
+### Search — author only
+POST {{host}}/api/books/search
+Content-Type: application/json
+
+{
+  "query": "dickens"
+}
+
+### Search — validation error (empty query -> 400)
+POST {{host}}/api/books/search
+Content-Type: application/json
+
+{
+  "query": ""
+}

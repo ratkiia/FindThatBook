@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <!--
+      The stated requirement targets .NET 8. Only the .NET 10 runtime is installed on this
+      machine, so RollForward=Major lets the net8.0 assemblies execute on the newer shared
+      framework. Remove this once the .NET 8 runtime is present.
+    -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,21 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+artifacts/
+[Tt]est[Rr]esults/
+*.trx
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Node (frontend deps live under frontend/.gitignore too)
+node_modules/
+dist/
+
+# Local secrets — never commit API keys
+appsettings.*.local.json
+.env
+.env.local
