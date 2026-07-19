@@ -294,9 +294,10 @@ network-independent.
   (The OTLP exporter package was removed to clear a dependency CVE; one moderate transitive
   advisory in `OpenTelemetry.Api` currently has no upstream fix and is left un-suppressed.)
 --**log user queries**:Log user queries for future model training, platform enhancements, analytics, auditing, troubleshooting, and end-to-end request tracing.. 
+--**User Authentication and Autherization**:OKTA or another third-party Identity and Access Management (IAM) solution can be integrated to provide secure authentication and authorization for the application..
 ---
 
-
+## Minor notes
 - OpenTelemetry tracing is wired with a **console exporter** in Development; the OTLP exporter
   package was removed to clear a dependency CVE and is listed as a future add-back.
 >>>>>>> 71db5b4 (Initial commit)
