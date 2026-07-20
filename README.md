@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # FindThatBook
 =======
 # Find That Book
@@ -34,6 +34,25 @@ a short, grounded "why this book" explanation.
 ---
 
 ## Architecture at a glance
+ The big picture:
+
+```
+        ┌──────────────┐        ┌───────────────────────────┐        ┌──────────────────┐
+        │  React UI     │  POST  │      .NET 8 Web API        │        │  Google Gemini    │
+        │ (search box,  │ ─────▶ │  (orchestration + ranking) │ ─────▶ │ (extract fields,  │
+        │  results)     │ ◀───── │                            │ ◀───── │  write reasons)   │
+        └──────────────┘  JSON   └───────────────────────────┘        └──────────────────┘
+                                          │        ▲
+                                          ▼        │
+                                 ┌───────────────────────────┐
+                                 │      Open Library APIs      │
+                                 │  search / works / authors   │
+                                 └───────────────────────────┘
+```
+
+The user talks only to the React UI. The UI talks only to our .NET API. The API is the brain:
+it calls Gemini to interpret the query, calls Open Library to fetch candidate books, ranks
+them, and (optionally) asks Gemini to explain each result.
 
 Clean Architecture with strict inward-pointing dependencies
 (`Api → Application → Domain`, `Infrastructure → Application → Domain`):
@@ -290,7 +309,9 @@ network-independent.
 - **Frontend polish**: virtualized lists, result pagination, keyboard nav, and unit tests
   (Vitest + Testing Library).
 - **Containerization** (Dockerfiles + compose) and a live demo deployment.
-- **log user queries**:Log user queries for future model training, platform enhancements, analytics, auditing, troubleshooting, and end-to-end request tracing.. 
+- **log user queries**:Log user queries for future model training, platform enhancements, analytics, auditing, troubleshooting, and end-to-end request tracing.
+- **Introduce Guardrails**: Enforces relevance, safety, and moderation checks to prevent prompt injection, jailbreaks, harmful content, and other unauthorized interactions before LLM processing.
+- **Agentic AI**: Leverage Agentic AI to orchestrate multi-step book discovery workflows, including query understanding, source selection, metadata enrichment, relevance ranking, and personalized recommendations.
 - **User Authentication and Autherization**:OKTA or another third-party Identity and Access Management (IAM) solution can be integrated to provide secure authentication and authorization for the application..
 - **OTLP exporter** wired to a collector (Jaeger/Tempo) for distributed tracing in non-dev envs.
   (The OTLP exporter package was removed to clear a dependency CVE; one moderate transitive
@@ -300,4 +321,3 @@ network-independent.
 ## Minor notes
 - OpenTelemetry tracing is wired with a **console exporter** in Development; the OTLP exporter
   package was removed to clear a dependency CVE and is listed as a future add-back.
->>>>>>> 71db5b4 (Initial commit)
